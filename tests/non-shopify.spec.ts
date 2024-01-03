@@ -1,10 +1,4 @@
-import {
-  test as base,
-  expect,
-  Page,
-  Locator,
-  BrowserContext,
-} from "@playwright/test";
+import { test, expect, Page, Locator, BrowserContext } from "@playwright/test";
 
 import { faker } from "@faker-js/faker";
 
@@ -42,7 +36,7 @@ class FormPage {
   }
 
   async exit(): Promise<boolean> {
-    await this.page.mouse.move(800, 800git );
+    await this.page.mouse.move(800, 800);
     await this.page.mouse.move(-1, -1, { steps: 50 });
     return this.form.isVisible();
   }
@@ -81,16 +75,6 @@ class FormPage {
     return Math.random() < this.submitMap[variationId];
   };
 }
-
-type Fixtures = {
-  formPage: FormPage;
-};
-
-const test = base.extend<Fixtures>({
-  formPage: async ({ page, context }, use) => ({
-    formPage: new FormPage(page, context),
-  }),
-});
 
 const iterations = Array.from({ length: 100 }, (e, i) => i + 1);
 
